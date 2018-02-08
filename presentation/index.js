@@ -176,7 +176,7 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading section="Hello, React!">Clone and Install Repo</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Clone the repo to your local folder</ListItem>
+            <ListItem>Clone the <a href="https://bitbucket.org/headspring/react-redux-learning-hour/src" target="_blank">repo</a> to your local folder</ListItem>
             <ListItem>Run <Code style={codeLight}>yarn</Code></ListItem>
           </List>
           <Terminal
@@ -250,7 +250,7 @@ export default class Presentation extends React.Component {
           bgColor={"primary"}
           lang="js"
           code={require("../assets/webpack.config.js.example")}
-          ranges={[{ loc: [0, 1], title: "webpack.config.js" }, { loc: [2, 8] }, { loc: [8, 15] }]}
+          ranges={[{ loc: [0, 1], title: "webpack.config.js" }, { loc: [2, 8] }, { loc: [8, 15] }, { loc: [15, 20] }]}
         />
 
         <CodeSlide
@@ -338,7 +338,7 @@ export default class Presentation extends React.Component {
                   Version: webpack <span style={{ fontWeight: "bold" }}>3.10.0</span>
                 </div>
                 <div>
-                  Time: <span style={{ fontWeight: "bold" }}>1743</span>ms
+                  Time: <span style={{ fontWeight: "bold" }}>1382</span>ms
                 </div>
                 <div style={{ fontWeight: "bold" }}>
                   {"    Asset     Size  Chunks                    Chunk Names"}
@@ -350,25 +350,13 @@ export default class Presentation extends React.Component {
                   <span style={{ color: "#B69C4C", fontWeight: "bold" }}>{"[big]  "}</span>main
                 </div>
                 <div>
-                  {"  [21] "}
-                  <span style={{ fontWeight: "bold" }}>./src/index.jsx</span> 547 bytes {"{"}
+                  {"  [14] "}
+                  <span style={{ fontWeight: "bold" }}>./src/index.jsx</span> 578 bytes {"{"}
                   <span style={{ color: "#B69C4C", fontWeight: "bold" }}>0</span>{"} "}
                   <span style={{ fontWeight: "bold", color: "#33b969" }}>[built]</span>
                 </div>
                 <div>
-                  {"  [35] "}
-                  <span style={{ fontWeight: "bold" }}>./src/style.css</span> 1.07 kB {"{"}
-                  <span style={{ color: "#B69C4C", fontWeight: "bold" }}>0</span>{"} "}
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}>[built]</span>
-                </div>
-                <div>
-                  {"  [36] "}
-                  <span style={{ fontWeight: "bold" }}>./node_modules/css-loader!./src/style.css</span> 787 bytes {"{"}
-                  <span style={{ color: "#B69C4C", fontWeight: "bold" }}>0</span>{"} "}
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}>[built]</span>
-                </div>
-                <div>
-                  {"    + 49 hidden modules"}
+                  {"    + 26 hidden modules"}
                 </div>
                 <div>
                   ✨ Done in 2.15s.
@@ -723,17 +711,22 @@ module: {
           <MyHeading section="Testing React">Jest</MyHeading>
           <List>
             <ListItem><Code style={codeLight}>yarn add --dev jest</Code></ListItem>
-            <AppearListItem><MyCodePane source={`// Board.jsx
+            <AppearListItem>
+              <MyCodePane source={`// Board.jsx
 ...
 export const calculateWinner = (squares) => {
-...`}/>
+...`}
+              />
             </AppearListItem>
-            <AppearListItem><MyCodePane source={`// package.json
+            <AppearListItem>
+              <MyCodePane source={`// package.json
 "scripts": {
      ...
     "test": "jest"
 },
-...`}/></AppearListItem>
+...`}
+              />
+            </AppearListItem>
           </List>
         </Slide>
 
@@ -815,21 +808,25 @@ export const calculateWinner = (squares) => {
           <List style={{ marginLeft: "-150px", marginRight: "-65px" }}>
             <ListItem><Code style={codeLight}>yarn add enzyme enzyme-adapter-react-16</Code></ListItem>
             <AppearListItem><Code style={codeLight}>yarn add --dev babel-jest react-test-renderer</Code></AppearListItem>
-            <AppearListItem><MyCodePane source={`// utilities/setupTests.js
+            <AppearListItem>
+              <MyCodePane source={`// utilities/setupTests.js
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 configure({ adapter: new Adapter() });
-`}/>
+`}
+              />
             </AppearListItem>
-            <AppearListItem><MyCodePane source={`// package.json
+            <AppearListItem>
+              <MyCodePane source={`// package.json
   "scripts": {
     ...
   },
   "jest": {
     "setupTestFrameworkScriptFile": "./utilities/setupTests.js"
   },
-...`}/>
+...`}
+              />
             </AppearListItem>
           </List>
         </Slide>
@@ -981,7 +978,7 @@ configure({ adapter: new Adapter() });
                 </div>
                 <div>
                   <span style={{ fontWeight: "bold" }}>Tests:       </span>
-                  <span style={{ fontWeight: "bold", color: "#e11111" }}> 1 failed</span>, 
+                  <span style={{ fontWeight: "bold", color: "#e11111" }}> 1 failed</span>,
                   <span style={{ fontWeight: "bold", color: "#33b969" }}> 1 passed</span>
                   , 2 total
                 </div>
