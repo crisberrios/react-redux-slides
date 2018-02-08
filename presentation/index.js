@@ -510,7 +510,7 @@ user.firstName = 'Will';`}
 
         <Slide align="top">
           <MyHeading section="React Basics">Add Some Style</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
+          <List>
             <ListItem>Update index.jsx to include css:
               <MyCodePane source={`...
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -520,7 +520,7 @@ ReactDOM.render(
   <App />
   document.getElementById('react-app'),
 );`}
-              /><br />
+              />
             </ListItem>
             <AppearListItem>This works, because of webpack:
               <MyCodePane source={`...
@@ -580,17 +580,16 @@ module: {
             <ListItem>Props are data passed from a parent component to a child</ListItem>
             <AppearListItem>One-way data flow: The child component can not update props</AppearListItem>
             <AppearListItem>Challenge 2: Update renderSquare to pass the "value" prop to Square. Update Square to display that value.</AppearListItem>
-            <AppearListItem>
-              <MyCodePane source={`// Board.jsx
-...
-static renderSquare(i) {
-  return <Square value={i} />;
-}
-...`}
-              />
-            </AppearListItem>
           </List>
         </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/board.jsx.4.example")}
+          ranges={[{ loc: [4, 7], title: "Board.jsx" }]}
+        />
 
         <CodeSlide
           align="top"
@@ -602,7 +601,7 @@ static renderSquare(i) {
 
         <Slide align="top">
           <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
+          <List>
             <ListItem>Currently looks like: <br /><br />
               <Board2 /><br /></ListItem>
             <AppearListItem>Challenge 3: Make Square a stateful component to display an 'X' when clicked instead of the value prop. Add a class method that updates the Square's state.</AppearListItem>
@@ -676,7 +675,7 @@ static renderSquare(i) {
 
         <Slide align="top">
           <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
+          <List style={{ marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem>Should look like:
               <Board4 /><br />
             </ListItem>
@@ -795,7 +794,7 @@ export const calculateWinner = (squares) => {
 
         <Slide align="top">
           <MyHeading section="Testing React">Jest Tips</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
+          <List style={{ marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem>Can watch files to test<br /><Code style={codeLight}>yarn test --watch</Code>, older: yarn test -- --watch<br /><br /></ListItem>
             <AppearListItem>Can see specific test results<br /><Code style={codeLight}>yarn test --verbose</Code><br /><br /></AppearListItem>
             <AppearListItem>View code coverage report<br /><Code style={codeLight}>yarn test --coverage</Code><br /><br /></AppearListItem>
@@ -813,7 +812,7 @@ export const calculateWinner = (squares) => {
 
         <Slide align="top">
           <MyHeading section="Testing React">Add Enzyme</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-150px", marginRight: "-65px" }}>
+          <List style={{ marginLeft: "-150px", marginRight: "-65px" }}>
             <ListItem><Code style={codeLight}>yarn add enzyme enzyme-adapter-react-16</Code></ListItem>
             <AppearListItem><Code style={codeLight}>yarn add --dev babel-jest react-test-renderer</Code></AppearListItem>
             <AppearListItem><MyCodePane source={`// utilities/setupTests.js
@@ -1109,6 +1108,10 @@ configure({ adapter: new Adapter() });
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem><a href="https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1">React Lifecycle Methods and when to use them</a></ListItem>
             <ListItem><a href="https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22">How to write React tests</a></ListItem>
+            <ListItem><a href="https://facebook.github.io/jest/docs/en/getting-started.html">Jest Docs</a></ListItem>
+            <ListItem><a href="http://airbnb.io/enzyme/docs/api/ShallowWrapper/find.html">Enzyme docs</a> for shallow rendering</ListItem>
+            <ListItem><a href="http://airbnb.io/enzyme/docs/api/selector.html">Enzyme docs</a> for component matching</ListItem>
+            <ListItem><a href="https://reactjs.org/tutorial/tutorial.html">React tutorial</a> this demo was based on</ListItem>
           </List>
         </Slide>
 
