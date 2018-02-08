@@ -1,0 +1,11 @@
+class baseModel {
+  constructor(options = {}, data = []) {
+    this.name = 'Base';
+    this.data = data;
+    this.options = options;
+  }
+
+  getName() { // class method
+    console.log(`Class name: ${this.name}`);
+  }
+}

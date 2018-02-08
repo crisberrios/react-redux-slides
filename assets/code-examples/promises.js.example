@@ -1,0 +1,25 @@
+let promise = new Promise((resolve, reject) => {
+  setTimeout(function() {
+    resolve("Success!");
+  }, 500);
+});
+
+promise.then((result) => {
+  console.log(`Yay! ${result}`);
+});
+
+// slightly more realistic example
+const mapResponse = (response) => {
+  if (response.status === 200) {
+    return 'Woohoo!';
+  } else {
+    return 'Womp.';
+  }
+} 
+
+fetch(url)
+  .then(mapResponse)
+  .then((result) => {
+    console.log(result);
+  })
+  .catch(err => console.error(err));

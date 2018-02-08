@@ -1,0 +1,14 @@
+{
+  "name": "simpleproject",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {}
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  },
+  "scripts": {
+    "webpack": "webpack"
+  }
+}

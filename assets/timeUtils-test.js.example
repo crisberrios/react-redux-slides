@@ -1,0 +1,38 @@
+const { stringFormatter } = require('../timeUtils');
+
+describe('timeUtils', () => {
+  it('formats single digit as hour', () => {
+    const val = '2';
+    const expected = '2:00';
+    const actual = stringFormatter(val);
+    expect(actual).toEqual(expected);
+  });
+
+  it('formats 2 digit integer as minutes', () => {
+    const val = '12';
+    const expected = '0:12';
+    const actual = stringFormatter(val);
+    expect(actual).toEqual(expected);
+  });
+
+  it('formats decimal to minutes of an hour', () => {
+    const val = '.5';
+    const expected = '0:30';
+    const actual = stringFormatter(val);
+    expect(actual).toEqual(expected);
+  });
+
+  it('formats > 3 digit integer as hours minutes', () => {
+    const val = '1111';
+    const expected = '11:11';
+    const actual = stringFormatter(val);
+    expect(actual).toEqual(expected);
+  });
+
+  it('formats partial time', () => {
+    const val = ':3';
+    const expected = '0:30';
+    const actual = stringFormatter(val);
+    expect(actual).toEqual(expected);
+  });
+});

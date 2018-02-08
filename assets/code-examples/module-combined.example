@@ -1,0 +1,8 @@
+import * as React from 'react';
+import Router, { Link } from 'react-router';
+
+class Layout extends React.Component {
+  ...
+  Router.push('/');
+  ...
+}

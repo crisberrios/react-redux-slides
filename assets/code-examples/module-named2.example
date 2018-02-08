@@ -1,0 +1,5 @@
+// other file
+import { port, getData } from 'test';
+
+console.log(port);
+const data = getData();

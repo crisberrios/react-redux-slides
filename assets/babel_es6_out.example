@@ -1,0 +1,4 @@
+// AKA: The best support
+var sayHello = function sayHello() {
+  return "Hello Babel!";
+};

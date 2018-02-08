@@ -1,0 +1,9 @@
+import React from 'react';
+
+// Functional component; doesn't have state
+// Contains only a render method
+const App = () => (
+  <h1>Hello, Component!</h1>
+);
+
+export default App;

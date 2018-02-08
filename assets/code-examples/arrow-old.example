@@ -1,0 +1,6 @@
+function addAll(values) {
+  // or, var that = this; 🤢
+  values.map(function (value) {
+    return this.add(value);
+  }).bind(this);
+}

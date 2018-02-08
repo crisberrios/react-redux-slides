@@ -1,0 +1,20 @@
+//String conversion
+$("#time-entry-input").on("change", function () {
+  var str = this.value;
+
+  var decimalParts = str.match(/^(\d*)(\.\d+)$/);
+  if (decimalParts) {
+    str = decimalToTime(decimalParts);
+  } else if (/^\d*:\d{0,2}$/.test(str)) {
+    str = completeTime(str);
+  } else if (/^\d{1}$/.test(str)) {
+    str += ":00";
+  } else if (/^\d{2}$/.test(str)) {
+    str = "0:" + str;
+  } else if (/^\d{3,}$/.test(str)) {
+    str = str.replace(/^(\d+)(\d{2})/, "$1:$2");
+  }
+
+  $("#time-entry-hours-input").focus();
+  this.value = str;
+});

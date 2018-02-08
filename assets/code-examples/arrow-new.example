@@ -1,0 +1,4 @@
+const addAll = (values) => {
+  values.map(value =>
+    this.add(value));
+}

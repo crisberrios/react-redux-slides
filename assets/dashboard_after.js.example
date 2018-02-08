@@ -1,0 +1,7 @@
+//String conversion
+$("#time-entry-input").on("change", function () {
+  const formatted = formatTime(this.value);
+
+  $("#time-entry-hours-input").focus();
+  this.value = formatted;
+});

@@ -1,0 +1,4 @@
+// other file
+import value from './test';
+
+console.log(value); // 12
