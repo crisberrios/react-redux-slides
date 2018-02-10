@@ -559,7 +559,7 @@ module: {
           bgColor={"primary"}
           lang="js"
           code={require("../assets/code-examples/app.jsx.3.example")}
-          ranges={[{ loc: [1, 2], title: "App.jsx" }, { loc: [3, 7] }, { loc: [8, 22] }]}
+          ranges={[{ loc: [1, 2], title: "App.jsx" }, { loc: [3, 17] }]}
         />
 
         <Slide align="top">
