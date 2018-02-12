@@ -39,8 +39,13 @@ ol, ul {
 
 button {
   margin-top: 10px;
+  margin-right: 10px;
 }
 
 .square:focus {
   outline: none;
+}
+
+a, a:hover {
+  color: #cccfff;
 }

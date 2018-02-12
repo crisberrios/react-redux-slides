@@ -11,6 +11,7 @@ import {
   Code,
   Layout,
   Fill,
+  Fit,
   CodePane,
   Text
 } from "spectacle";
@@ -19,6 +20,8 @@ import createTheme from "spectacle/lib/themes/default";
 import Terminal from "spectacle-terminal";
 import Typist from "react-typist";
 import Counter from "./samples/Counter.jsx";
+import ReduxCounter from "./samples/ReduxCounter.jsx";
+import ReduxCounter2 from "./samples/ReduxCounter2.jsx";
 import Board from "./samples/Board.jsx";
 import Board2 from "./samples/Board2.jsx";
 import Board3 from "./samples/Board3.jsx";
@@ -61,7 +64,7 @@ const subtitleProps = {
   size: 6,
   textColor: "secondary",
   style: {
-    fontSize: "18pt",
+    fontSize: "24pt",
     fontWeight: "300",
     marginBottom: "3.5em",
     fontVariant: "small-caps"
@@ -81,11 +84,25 @@ const codePaneProps = {
   }
 };
 
+const footerProps = {
+  size: 6,
+  textColor: "secondary",
+  style: {
+    fontSize: "24pt",
+    fontWeight: "300",
+    fontVariant: "small-caps",
+    top: "85vh",
+    width: "100%",
+    position: "absolute"
+  }
+};
+
 const codeLight = {
   color: "#fff"
 };
 
 export const MySubtitle = ({ children }) => <Heading {...subtitleProps}>{children}</Heading>;
+export const MyFooter = ({ children }) => <Heading {...footerProps}>{children}</Heading>;
 export const MyCodePane = ({ source }) => <CodePane {...codePaneProps} source={source} />;
 export const MyLink = ({ children, href }) => (
   <Link href={href} textColor="tertiary" target="_blank" style={{ textDecoration: "underline" }}>{children}</Link>
@@ -139,352 +156,50 @@ export default class Presentation extends React.Component {
             Intro to React/Redux
           </Heading>
           <MySubtitle>Headspring Front End Forum</MySubtitle>
-          <MySubtitle>Part 2: Hello, React!</MySubtitle>
+          <MySubtitle>Part 3: Hello, Redux!</MySubtitle>
         </Slide>
 
         <Slide align="top">
-          <MyHeading>Intro to React/Redux: Part 2</MyHeading>
+          <MyHeading>Intro to React/Redux: Part 3</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-75px", marginRight: "-75px" }}>
-            <ListItem>Hands On: Hello, React!</ListItem>
-            <ListItem>Learn React principles through building Tic-Tac-Toe</ListItem>
-            <ListItem>Testing React</ListItem>
+            <ListItem>What is Redux?</ListItem>
+            <ListItem>Why use Redux?</ListItem>
+            <ListItem>How to Redux</ListItem>
+            <ListItem>Testing Redux</ListItem>
             <ListItem>Recommended resources</ListItem>
           </List>
         </Slide>
 
         <Slide align="top">
-          <MyHeading>Why React?</MyHeading>
+          <MyHeading>What is Redux?</MyHeading>
+          <List style={{ lineHeight: 1.5, marginLeft: '-150px', marginRight: '-150px' }}>
+            <AppearListItem>Redux is a predictable state container for JavaScript apps</AppearListItem>
+            <AppearListItem>Can be used with React, or any view library</AppearListItem>
+            <AppearListItem>Evolved from the ideas of Flux</AppearListItem>
+            <AppearListItem>Stores your entire application's state in a single tree "store".</AppearListItem>
+            <AppearListItem>Event handler architecture; change state by emitting actions</AppearListItem>
+            <AppearListItem>Reducers listen for actions and transform the state tree</AppearListItem>
+          </List>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading>Why use Redux?</MyHeading>
+          <List style={{ lineHeight: 1.5, marginLeft: '-150px', marginRight: '-150px' }}>
+            <AppearListItem>Persist state to local storage and boot up from it</AppearListItem>
+            <AppearListItem>Automate bug reports by serializing user actions with a state snapshot</AppearListItem>
+            <AppearListItem>Maintain an undo history</AppearListItem>
+            <AppearListItem>Time travel during development</AppearListItem>
+            <AppearListItem>Preserve business logic to provide alternative UIs</AppearListItem>
+            <AppearListItem>Easy to test</AppearListItem>
+            <AppearListItem>Ideal for scalable SPAs</AppearListItem>
+          </List>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading>Remember this?</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <AppearListItem>React is a library for building user interfaces</AppearListItem>
-            <AppearListItem>Uses reusable, stateful components</AppearListItem>
-            <AppearListItem>Fast, reactive updates using a virtual DOM</AppearListItem>
-            <AppearListItem>It's just JavaScript</AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Hands On: Prerequisites</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Latest Node installed (8.9.4, via nvm)</ListItem>
-            <AppearListItem>Yarn installed</AppearListItem>
-            <AppearListItem>VS Code installed, with recommended extensions (ESLint, EditorConfig for VS Code)</AppearListItem>
-            <AppearListItem>React Developer Tools browser extension</AppearListItem>
-            <AppearListItem><span>These slides</span> <Image src={require("../assets/iseewhatyoudidthere.png")} style={{ width: "70px", marginTop: "-50px" }} /></AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Clone and Install Repo</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Clone the <a href="https://bitbucket.org/headspring/react-redux-learning-hour/src" target="_blank">repo</a> to your local folder</ListItem>
-            <ListItem>Run <Code style={codeLight}>yarn</Code></ListItem>
-          </List>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn install v1.3.2</span>
-                <div>
-                  <span style={{ color: "#00f" }}>info</span> No lockfile found.
-                </div>
-                <div>
-                  <span style={{ color: "#aaa" }}>[1/4]</span> 🔍 Resolving packages...
-                </div>
-              </div>,
-              <div>
-                <span style={{ color: "#aaa" }}>[2/4]</span> 🚚 Fetching packages...
-              </div>,
-              <div>
-                <span style={{ color: "#aaa" }}>[3/4]</span> 🔗 Linking dependencies...
-              </div>,
-              <div>
-                <span style={{ color: "#aaa" }}>[4/4]</span> 📃 Building fresh packages...
-              </div>,
-              <div>
-                <div>
-                  <span style={{ color: "#33b969" }}>success</span> Saved lockfile.
-                </div>
-                <div>
-                  ✨ Done in 12.50s.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/package.json.example")}
-          ranges={[{ loc: [1, 4], title: "package.json" }, { loc: [4, 12] }, { loc: [12, 20] }, { loc: [20, 29] }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/editorconfig.example")}
-          ranges={[{ loc: [0, 7], title: ".editorconfig" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/eslintrc.example")}
-          ranges={[{ loc: [0, 7], title: ".eslintrc" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/babelrc.example")}
-          ranges={[{ loc: [0, 10], title: ".babelrc" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/webpack.config.js.example")}
-          ranges={[{ loc: [0, 1], title: "webpack.config.js" }, { loc: [2, 8] }, { loc: [8, 15] }, { loc: [15, 20] }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/style.css.example")}
-          ranges={[{ loc: [0, 0], title: "style.css" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/index.html.example")}
-          ranges={[{ loc: [0, 11], title: "index.html" }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">What we aren't covering today</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>SASS/SCSS styling</ListItem>
-            <AppearListItem>Font/image/other file loading</AppearListItem>
-            <AppearListItem>Hot Reloading</AppearListItem>
-            <AppearListItem>Dev/Prod configs</AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Your Turn</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Edit src/index.jsx</ListItem>
-            <AppearListItem>Write the following:
-              <MyCodePane source={require("../assets/code-examples/index.jsx.example")} />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Your Turn</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Open dist/index.html</ListItem>
-            <AppearListItem>Update the body to this:<br /><br/>
-              <MyCodePane source={`<body>
-  <div id="react-app"></div>
-  <script src="bundle.js"></script>
-</body>`}
-              />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Your Turn</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Open package.json</ListItem>
-            <AppearListItem>Add the following "scripts" section:<br /><br/>
-              <MyCodePane source={`... // "private": true,
-  "scripts": {
-    "build": "webpack"
-  },
-... // "dependencies": {`}
-              />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">yarn build</MyHeading>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn build</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
-                <div>
-                  <span style={{ color: "#aaa" }}>$ webpack</span>
-                </div>
-              </div>,
-              <div>
-                <div>
-                  Hash: <span style={{ fontWeight: "bold" }}>113de774897f5b188a74</span>
-                </div>
-                <div>
-                  Version: webpack <span style={{ fontWeight: "bold" }}>3.10.0</span>
-                </div>
-                <div>
-                  Time: <span style={{ fontWeight: "bold" }}>1382</span>ms
-                </div>
-                <div style={{ fontWeight: "bold" }}>
-                  {"    Asset     Size  Chunks                    Chunk Names"}
-                </div>
-                <div>
-                  <span style={{ color: "#B69C4C", fontWeight: "bold" }}>{"bundle.js  1.19 MB       "}</span>
-                  <span style={{ fontWeight: "bold" }}>0  </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}>[emitted]  </span>
-                  <span style={{ color: "#B69C4C", fontWeight: "bold" }}>{"[big]  "}</span>main
-                </div>
-                <div>
-                  {"  [14] "}
-                  <span style={{ fontWeight: "bold" }}>./src/index.jsx</span> 578 bytes {"{"}
-                  <span style={{ color: "#B69C4C", fontWeight: "bold" }}>0</span>{"} "}
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}>[built]</span>
-                </div>
-                <div>
-                  {"    + 26 hidden modules"}
-                </div>
-                <div>
-                  ✨ Done in 2.15s.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">Did it work?</MyHeading>
-          <List style={{ lineHeight: 1.5, listStyle: "none" }}>
-            <ListItem>Navigate in your file explorer to the <Code style={codeLight}>dist</Code> folder of your repo,
-              and open the <Code style={codeLight}>index.html</Code> in a browser</ListItem>
-            <AppearListItem><br/>
-              <Image src={require("../assets/hello-react.png")} />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">My First Component</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Create a new file in src, App.jsx:<br /><br/>
-              <MyCodePane source={`import React from 'react';
-
-const App = () => (
-  <h1>Hello, Component!</h1>
-);
-
-export default App;
-`}
-              />
-            </ListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">My First Component</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Update index.jsx to point to your App component:<br /><br/>
-              <MyCodePane source={`import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App'; // Import your new component
-
-ReactDOM.render(
-  <App />, // Render your component
-  document.getElementById('react-app'),
-);
-`}
-              />
-            </ListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">My First Component</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-15px" }}>
-            <ListItem>Update package.json to include a start script:<br /><br/>
-              <MyCodePane source={`...
-// "scripts": {
-     "build": "webpack",
-     "start": "webpack-dev-server"
-// },
-... `}
-              />
-            </ListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Hello, React!">My First Component</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Run <Code style={codeLight}>yarn start</Code></ListItem>
-            <ListItem>Open a browser at localhost:8080</ListItem>
-            <AppearListItem><br/>
-              <Image src={require("../assets/hello-component.png")} />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide>
-          <Heading
-            caps
-            size={2}
-            textColor="tertiary"
-            style={{ fontWeight: "300", marginBottom: "0.5em" }}
-          >
-            Great Job!
-          </Heading>
-          <h2>Now, sit back, and relax! React Basics comin'atcha.</h2>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Component State</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Stateless functional component vs. stateful components</ListItem>
-            <AppearListItem>Challenge 1: Convert App.jsx to a stateful component with a constructor and a "count" state, initialized to 0. Display the current count, and add a button that increments the count by one.</AppearListItem>
-            <AppearListItem>Bonus challenge! Add bootstrap styling to the index.jsx.</AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/app.jsx.0.example")}
-          ranges={[{ loc: [0, 8], title: "App.jsx" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/app.jsx.1.example")}
-          ranges={[{ loc: [2, 3], title: "\"Smart\" App.jsx" }, { loc: [3, 10] }, { loc: [11, 16] }, { loc: [18, 19] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Immutable State</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <AppearListItem>Mutating data: changing the values of a variable directly
-              <MyCodePane source={`let user = { firstName: 'William', lastName: 'Riker' };
-user.firstName = 'Will';`}
-              />
-            </AppearListItem>
-            <AppearListItem>Detecting changes</AppearListItem>
-            <AppearListItem>Allows easier undo/redo and time travel</AppearListItem>
+            <Counter /><br />
+            <AppearListItem>Let's understand the principles of Redux by creating a reducer to manage that state transition.</AppearListItem>
           </List>
         </Slide>
 
@@ -493,48 +208,415 @@ user.firstName = 'Will';`}
           bgColor={"primary"}
           lang="js"
           code={require("../assets/code-examples/app.jsx.2.example")}
-          ranges={[{ loc: [1, 2], title: "Add a Button" }, { loc: [12, 17] }, { loc: [20, 29] }]}
+          ranges={[{ loc: [4, 11], title: "Original App.jsx" }, { loc: [12, 17] }, { loc: [18, 31] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/redux.counter.example")}
+          ranges={[{ loc: [3, 11] }, { loc: [16, 17] }, { loc: [19, 23] }, { loc: [24, 27] } ]}
         />
 
         <Slide align="top">
-          <MyHeading section="React Basics">Add Some Style</MyHeading>
-          <List>
-            <ListItem>Update index.jsx to include css:
-              <MyCodePane source={`...
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './style.css';
+          <MyHeading>Counting with a Reducer!</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ReduxCounter /><br />
+            <AppearListItem>Let's add a new action.</AppearListItem>
+          </List>
+        </Slide>
 
-ReactDOM.render(
-  <App />
-  document.getElementById('react-app'),
-);`}
-              />
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/redux.counter.1.example")}
+          ranges={[{ loc: [7, 9] }, { loc: [30, 33] }, { loc: [45, 51] } ]}
+        />
+
+        <Slide align="top">
+          <MyHeading>Counting with a Reducer!</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ReduxCounter2 /><br />
+          </List>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading>Why not Redux?</MyHeading>
+          <List style={{ lineHeight: 1.5, marginLeft: '-150px', marginRight: '-150px' }}>
+            <AppearListItem>It's a tradeoff that limits how you interact with state</AppearListItem>
+            <AppearListItem>There's nothing inherently wrong with using setState/component state</AppearListItem>
+            <AppearListItem>Added indirection is only beneficial if you gain something from it</AppearListItem>
+            <AppearListItem>Don't assume that you need it</AppearListItem>
+          </List>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Consider Using Redux If...</MyHeading>
+          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
+            <AppearListItem>You're building a SPA (single-page application)</AppearListItem>
+            <AppearListItem>Maintaining component state is getting really hairy</AppearListItem>
+            <AppearListItem>Your nested components are passing lots of props around but not using them themselves</AppearListItem>
+          </List>
+        </Slide>
+
+        <Slide>
+          <Heading
+            caps
+            size={3}
+            textColor="tertiary"
+            style={{ fontWeight: "300", marginBottom: "0.5em" }}
+          >
+            REDUX:
+          </Heading>
+          <MyHeading>Cast of Characters</MyHeading>
+          <Image src={require("../assets/redux.png")} />
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">Action Creators</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/action-creator.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>Formats your message a way the rest of the system can understand</AppearListItem>
+              <AppearListItem>Like the telegraph operator</AppearListItem>
+              <AppearListItem>Returns a formatted object</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">The Store</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/store.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>Only one store</AppearListItem>
+              <AppearListItem>Object tree of your application's state</AppearListItem>
+              <AppearListItem>Delegates updates to reducers</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">Reducers</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/reducer.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>Don't mutate state; modify copies</AppearListItem>
+              <AppearListItem>Reducers pass their modified slices of state back to the Root Reducer</AppearListItem>
+              <AppearListItem>Can have a hierarchy of reducers, as needed</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">The View</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/components.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>Smart (connected) components are in charge of the actions</AppearListItem>
+              <AppearListItem>Dumb components can peform actions passed down as props</AppearListItem>
+              <AppearListItem>Smart components rarely emit DOM of their own; usually just arrange dumb components</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">View Layer Binding</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/view_binding.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>The "IT guy" for the view tree</AppearListItem>
+              <AppearListItem>When using React, this is done by 'react-redux'</AppearListItem>
+              <AppearListItem>Ensures the components can connect to the store</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">View Layer Binding</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/view_binding.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <ListItem>Made up of three parts:
+                <List style={{ marginLeft: "70px" }}>
+                  <AppearListItem>Provider component - wraps the component tree</AppearListItem>
+                  <AppearListItem>connect() - a component wraps itself with connect to receive state updates</AppearListItem>
+                  <AppearListItem>selector - function that maps what part of the state it needs</AppearListItem>
+                </List>
+              </ListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Components of Redux">Root Component</MyHeading>
+          <Layout>
+            <Fill><Image src={require("../assets/cio.png")} style={{ width: "300px" }} /></Fill>
+            <Fill><List style={{ lineHeight: 1.5, marginRight: "-150px" }}>
+              <AppearListItem>Exists in all React applications, but has more specific responsibility for Redux</AppearListItem>
+              <AppearListItem>Like the C-level executive</AppearListItem>
+              <AppearListItem>Creates the store, specifies the reducer, and brings together the binding and views</AppearListItem>
+              <AppearListItem>Hands-off once the app has been initialized</AppearListItem>
+            </List></Fill>
+          </Layout>
+          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading>Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
+            <ListItem>Challenge 9: Pull the Redux_Starter branch of the repo, and add necessary packages for Redux</ListItem>
+            <AppearListItem>Run <Code style={codeLight}>yarn add redux react-redux redux-thunk</Code></AppearListItem>
+            <AppearListItem>Run <Code style={codeLight}>yarn</Code> to ensure all previously defined packages have been installed</AppearListItem>
+            <AppearListItem>Run <Code style={codeLight}>yarn start</Code> to run the application at localhost:8080</AppearListItem>
+          </List>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading>Static Dashboard</MyHeading>
+          <Image src={require("../assets/StaticDashboard.png")} />
+          <MyFooter>random images from <a href="http://picsum.photos/">picsum.photos</a></MyFooter>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Components We Added</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Card</ListItem>
+            <AppearListItem>WelcomeCard</AppearListItem>
+            <AppearListItem>CardList</AppearListItem>
+            <AppearListItem>StaticDashboard (replaced App.jsx)</AppearListItem>
+          </List>
+          <Image style={{ height: "40vh" }} src={require("../assets/StaticDashboard.png")} />
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">New Folder Structure</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>/src
+              <List style={{ marginLeft: "70px" }}>
+                <AppearListItem>/components</AppearListItem>
+                <AppearListItem>/containers</AppearListItem>
+                <AppearListItem>/actions</AppearListItem>
+                <AppearListItem>/reducers</AppearListItem>
+              </List>
             </ListItem>
-            <AppearListItem>This works, because of webpack:
-              <MyCodePane source={`...
-module: {
-  rules: [
-    ...
-    { test: /\\.css$/, loader: 'style-loader!css-loader' },
-  ]
-}
-...`}
-              />
+            <AppearListItem>Larger application could have that folder structure for each feature</AppearListItem>
+            <AppearListItem>index.jsx updated to include static data; passes it as props to StaticDashboard</AppearListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/index.jsx.2.example")}
+          ranges={[{ loc: [4, 6], title: "index.jsx" }, { loc: [7, 14] }, { loc: [14, 19] }, { loc: [20, 25] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/staticDashboard.example")}
+          ranges={[{ loc: [5, 6], title: "StaticDashboard.jsx" }, { loc: [10, 12] }, { loc: [18, 31] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Challenge 10: Create initialState.js to define the app's initial (empty) state, based on the shape of the hard-coded data. Create a constants.js and define strings for the expected actions: DISPLAY_WELCOME_CARD, DISPLAY_CARD_LIST.</ListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/initialState.js.example")}
+          ranges={[{ loc: [0, 9], title: "initialState.js" }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/constants.js.example")}
+          ranges={[{ loc: [0, 5], title: "constants.js" }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Challenge 11: Define action types in an actionTypes.js for each of the the expected actions. Create actions.js and define the action creators that return a formatted object with the expected static data (which you can now remove from index.jsx).</ListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/actionTypes.js.example")}
+          ranges={[{ loc: [0, 1], title: "actionTypes.js" }, { loc: [ 2, 11] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/actions.js.example")}
+          ranges={[{ loc: [0, 1], title: "actions.js" }, { loc: [2, 10] }, { loc: [11, 27] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Challenge 12: Create a reducer file for each action that takes the current state and action message, and switches based on action type to update the state. Link these two reducers with a root reducer (already started for you in reducers/index.js).</ListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/welcomeReducer.js.example")}
+          ranges={[{ loc: [0, 2], title: "welcomeCardReducer.js" }, { loc: [3, 5] }, { loc: [5, 11] }, { loc: [13, 14] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/cardReducer.js.example")}
+          ranges={[{ loc: [0, 2], title: "cardListReducer.js" }, { loc: [3, 5] }, { loc: [5, 11] }, { loc: [13, 14] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Challenge 13: Create containers that wrap the WelcomeCard and CardList components with a connect() function, and map the expected piece of state to that component's props. Update StaticDashboard to use the container components.</ListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/welcomeCardContainer.example")}
+          ranges={[{ loc: [0, 3], title: "WelcomeCardContainer.jsx" }, { loc: [4, 9] }, { loc: [10, 15] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/cardListContainer.example")}
+          ranges={[{ loc: [0, 9], title: "CardListContainer.jsx" }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/staticDashboard.1.example")}
+          ranges={[{ loc: [0, 3], title: "StaticDashboard.jsx" }, { loc: [9, 11] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
+          <List style={{ lineHeight: 1.5 }}>
+            <ListItem>Challenge 14: Complete implementation by updating the root component (index.jsx) to configure Redux. Use bindActionCreators in the container components to enable the components to access the actions as props.</ListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/index.redux.example")}
+          ranges={[{ loc: [2, 3], title: "index.jsx" }, { loc: [6, 7] }, { loc: [8, 15] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/store.example")}
+          ranges={[{ loc: [0, 4], title: "store.js" }, { loc: [5, 10] }, { loc: [11, 13] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">How does it look?</MyHeading>
+          <List style={{ listStyle: "none" }}>
+            <AppearListItem>
+              <Image src={require("../assets/with-redux1.png")} />
+            </AppearListItem>
+          </List>
+        </Slide>
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/welcomeCardContainer.1.example")}
+          ranges={[{ loc: [1, 2], title: "WelcomeCardContainer.jsx" }, { loc: [4, 5] }, { loc: [10, 13] }, { loc: [14, 18] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/cardListContainer.1.example")}
+          ranges={[{ loc: [1, 2], title: "CardListContainer.jsx" }, { loc: [3, 4] }, { loc: [9, 12] }, { loc: [13, 17] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/welcomeCard.example")}
+          ranges={[{ loc: [1, 3], title: "WelcomeCard.jsx" }, { loc: [5, 9] }, { loc: [14, 15] }, { loc: [16, 19] }, { loc: [24, 29] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/cardList.example")}
+          ranges={[{ loc: [1, 3], title: "CardList.jsx" }, { loc: [5, 9] }, { loc: [13, 14] }, { loc: [16, 19] }]}
+        />
+
+        <Slide align="top">
+          <MyHeading section="Hello, Redux">How does it look?</MyHeading>
+          <List style={{ listStyle: "none" }}>
+            <AppearListItem>
+              <Image src={require("../assets/redux-demo1.gif")} />
             </AppearListItem>
           </List>
         </Slide>
 
         <Slide align="top">
-          <MyHeading section="React Basics">Try it out</MyHeading>
-          <Counter />
+          <MyHeading section="Hello, Redux">Redux Dev Tools</MyHeading>
+          <List style={{ listStyle: "none" }}>
+            <AppearListItem>
+              <Image src={require("../assets/redux-demo2.gif")} />
+            </AppearListItem>
+          </List>
         </Slide>
 
         <Slide align="top">
-          <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
+          <MyHeading section="Hello, Redux">Testing Redux</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <AppearListItem>Starting point adds Board and Square components</AppearListItem>
-            <AppearListItem>Currently looks like: <br /><br />
-              <Board /></AppearListItem>
+            <ListItem>Nothing to add, the project is already set up with Jest from last week</ListItem>
+            <AppearListItem>Testing Actions</AppearListItem>
+            <AppearListItem>Testing Reducers</AppearListItem>
           </List>
         </Slide>
 
@@ -542,162 +624,71 @@ module: {
           align="top"
           bgColor={"primary"}
           lang="js"
-          code={require("../assets/code-examples/square.jsx.example")}
-          ranges={[{ loc: [0, 8], title: "Square.jsx" }]}
+          code={require("../assets/code-examples/actions.spec.example")}
+          ranges={[{ loc: [0, 1], title: "actions.spec.js" }, { loc: [2, 8] }, { loc: [8, 17] }, { loc: [18, 23] }, { loc: [23, 30] }]}
         />
 
         <CodeSlide
           align="top"
           bgColor={"primary"}
           lang="js"
-          code={require("../assets/code-examples/board.jsx.example")}
-          ranges={[{ loc: [1, 2], title: "Board.jsx" }, { loc: [3, 7] }, { loc: [8, 19] }, { loc: [19, 35] }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/app.jsx.3.example")}
-          ranges={[{ loc: [1, 2], title: "App.jsx" }, { loc: [3, 17] }]}
+          code={require("../assets/code-examples/reducers.spec.example")}
+          ranges={[{ loc: [0, 2], title: "reducers.spec.js" }, { loc: [3, 5] }, { loc: [5, 12] }, { loc: [13, 20] }, { loc: [20, 26] }, { loc: [29, 34] }, { loc: [35, 41] }, { loc: [41, 48] }]}
         />
 
         <Slide align="top">
-          <MyHeading section="React Basics">Using Props</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Props are data passed from a parent component to a child</ListItem>
-            <AppearListItem>One-way data flow: The child component can not update props</AppearListItem>
-            <AppearListItem>Challenge 2: Update renderSquare to pass the "value" prop to Square. Update Square to display that value.</AppearListItem>
-          </List>
+          <MyHeading section="Testing Redux">yarn test</MyHeading>
+          <Terminal
+            title="1. erin@headspring: ~(zsh)"
+            output={[
+              <Typist cursor={cursor}>yarn test</Typist>,
+              <div>
+                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
+                <div>
+                  <span style={{ color: "#aaa" }}>$ jest</span>
+                </div>
+              </div>,
+              <div>
+                <div>
+                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
+                  <span style={{ color: "#aaa" }}> src\reducers\</span>
+                  <span style={{ fontWeight: "bold" }}>reducers.spec.js</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
+                  <span style={{ color: "#aaa" }}> src\actions\</span>
+                  <span style={{ fontWeight: "bold" }}>actions.spec.js</span>
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold" }}>Test Suites: </span>
+                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 2 passed</span>
+                  , 2 total
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold" }}>Tests:       </span>
+                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 6 passed</span>
+                  , 6 total
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold" }}>Snapshots:    </span>
+                  0 total
+                </div>
+                <div>
+                  <span style={{ fontWeight: "bold" }}>Time:         </span>
+                  1.996s
+                </div>
+                <div>
+                  <span style={{ color: "#aaa" }}>Ran all test suites.</span>
+                </div>
+                <div>
+                  ✨ Done in 3.90s.
+                </div>
+              </div>
+            ]}
+          />
         </Slide>
 
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/board.jsx.4.example")}
-          ranges={[{ loc: [4, 7], title: "Board.jsx" }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/square.jsx.1.example")}
-          ranges={[{ loc: [1, 2], title: "Square.jsx" }, { loc: [3, 8] }, { loc: [9, 12] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List>
-            <ListItem>Currently looks like: <br /><br />
-              <Board2 /><br /></ListItem>
-            <AppearListItem>Challenge 3: Make Square a stateful component to display an 'X' when clicked instead of the value prop. Add a class method that updates the Square's state.</AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/square.jsx.2.example")}
-          ranges={[{ loc: [3, 11], title: "Square.jsx" }, { loc: [12, 17] }, { loc: [18, 28] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Now looks like: <br /><br />
-              <Board3 /><br /></ListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="React Basics">React Developer Tools</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Chrome/Firefox extension to explore Component tree</ListItem>
-            <ListItem>View component state/props
-              <Image src={require("../assets/react-dev-tools.png")} />
-            </ListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Where does state belong?</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>State should be defined at the highest level necessary, since it is passed down from there to all components that need it</ListItem>
-            <AppearListItem>Challenge 4: Convert Square back to a functional component, and add an array of values to Board's state. Pass the click handler and the new value down to Square as props. Running the app should not have any visible change from this switch.</AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/board.jsx.1.example")}
-          ranges={[{ loc: [4, 11], title: "Board.jsx" }, { loc: [12, 17] }, { loc: [18, 25] }, { loc: [33, 37] }]}
-        />
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/square.jsx.3.example")}
-          ranges={[{ loc: [3, 11], title: "Square.jsx" }, { loc: [12, 16] }, { loc: [17, 20] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Challenge 5: Add a nextPlayer state to Board, initialize it to 'X', and update it in handleClick to switch between 'X' and 'O' as expected when you click an empty square. Display the correct next player in the status.</ListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/board.jsx.2.example")}
-          ranges={[{ loc: [9, 10], title: "Board.jsx" }, { loc: [16, 23] }, { loc: [32, 35] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Tic-Tac-Toe Game</MyHeading>
-          <List style={{ marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Should look like:
-              <Board4 /><br />
-            </ListItem>
-            <AppearListItem>Challenge 6: Check for a winner after each move, and display the winner in the status if found, or "Cats game" if the game is a draw. Add a button to start a new game by resetting the state.</AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/board.jsx.3.example")}
-          ranges={[{ loc: [1, 2], title: "Board.jsx" }, { loc: [4, 15] }, { loc: [16, 26] }, { loc: [27, 32] }, { loc: [37, 40] }, { loc: [42, 58] }, { loc: [59, 64] }, { loc: [72, 87] }, { loc: [106, 112] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="React Basics">Let's Play!</MyHeading>
-          <Layout><Board5 /></Layout>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="React Basics">React Lifecycle Methods</MyHeading>
-          <List>
-            <ListItem>You've seen render(), but there are also:</ListItem>
-            <AppearListItem>componentWillMount()</AppearListItem>
-            <AppearListItem>componentDidMount()</AppearListItem>
-            <AppearListItem>componentWillReceiveProps()</AppearListItem>
-            <AppearListItem>shouldComponentUpdate()</AppearListItem>
-            <AppearListItem>componentWillUpdate()</AppearListItem>
-            <AppearListItem>componentDidUpdate()</AppearListItem>
-            <AppearListItem>componentWillUnmount()</AppearListItem>
-          </List>
-        </Slide>
-
+        {/* 
         <Slide align="top">
           <MyHeading section="Testing React">Jest</MyHeading>
           <List>
@@ -738,52 +729,6 @@ export const calculateWinner = (squares) => {
           ranges={[{ loc: [0, 1], title: "Board.spec.jsx" }, { loc: [2, 13] }, { loc: [14, 25] }, { loc: [26, 37] }]}
         />
 
-        <Slide align="top">
-          <MyHeading section="Testing React">yarn test</MyHeading>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn test</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
-                <div>
-                  <span style={{ color: "#aaa" }}>$ jest</span>
-                </div>
-              </div>,
-              <div>
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Board.spec.js</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Test Suites: </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 1 passed</span>
-                  , 1 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Tests:       </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 3 passed</span>
-                  , 3 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Snapshots:    </span>
-                  0 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Time:         </span>
-                  1.157s, estimated 2s
-                </div>
-                <div>
-                  <span style={{ color: "#aaa" }}>Ran all test suites.</span>
-                </div>
-                <div>
-                  ✨ Done in 1.69s.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide>
 
         <Slide align="top">
           <MyHeading section="Testing React">Jest Tips</MyHeading>
@@ -1098,17 +1043,17 @@ configure({ adapter: new Adapter() });
               </div>
             ]}
           />
-        </Slide>
+        </Slide> */}
 
         <Slide align="top">
           <MyHeading>Recommended Resources</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem><a href="https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-them-2111a1b692b1">React Lifecycle Methods and when to use them</a></ListItem>
-            <ListItem><a href="https://medium.freecodecamp.org/the-right-way-to-test-react-components-548a4736ab22">How to write React tests</a></ListItem>
-            <ListItem><a href="https://facebook.github.io/jest/docs/en/getting-started.html">Jest Docs</a></ListItem>
-            <ListItem><a href="http://airbnb.io/enzyme/docs/api/ShallowWrapper/find.html">Enzyme docs</a> for shallow rendering</ListItem>
-            <ListItem><a href="http://airbnb.io/enzyme/docs/api/selector.html">Enzyme docs</a> for component matching</ListItem>
-            <ListItem><a href="https://reactjs.org/tutorial/tutorial.html">React tutorial</a> this demo was based on</ListItem>
+            <ListItem><a href="https://redux.js.org/">Redux docs</a></ListItem>
+            <ListItem><a href="https://github.com/gaearon/redux-thunk">Redux-Thunk documentation</a></ListItem>
+            <ListItem><a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">A Cartoon Intro to Redux</a></ListItem>
+            <ListItem><a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a> - Dan Abramov</ListItem>
+            <ListItem><a href="http://sinonjs.org/">Sinon.js</a> for mocks</ListItem>
+            <ListItem><a href="http://blog.embengineering.com/post/2016/05/22/react-and-redux-mini-dashboard/">Emmanuel's blog post</a> this demo was based on</ListItem>
           </List>
         </Slide>
 

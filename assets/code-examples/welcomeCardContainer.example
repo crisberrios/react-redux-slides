@@ -1,0 +1,14 @@
+import { connect } from 'react-redux';
+import WelcomeCard from
+  '../components/WelcomeCard';
+
+const mapStateToProps = state => (
+  { ...state.welcomeCard }
+  // WelcomeCard will have the props:
+  // title, msg, imgUrl
+);
+
+// connect returns a function that is immediately
+// invoked by passing it the component
+export default
+  connect(mapStateToProps)(WelcomeCard);

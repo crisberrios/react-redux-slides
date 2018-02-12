@@ -1,0 +1,12 @@
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+import initialState from './initialState';
+
+// Thunk middleware lets you write action creators
+// that return a function, allowing you to dispatch
+// async actions or router transitions as if they
+// were actions.
+const middleware = [thunk];
+
+export default applyMiddleware(...middleware)(createStore)(rootReducer, initialState);
