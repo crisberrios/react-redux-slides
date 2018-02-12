@@ -455,7 +455,7 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Challenge 11: Define action types in an actionTypes.js for each of the the expected actions. Create actions.js and define the action creators that return a formatted object with the expected static data (which you can now remove from index.jsx).</ListItem>
+            <ListItem>Challenge 11: Define action types in an actionTypes.js for each of the the expected actions. Create actions.js and define the action creators that return a formatted object with the expected static data.</ListItem>
           </List>
         </Slide>
 
@@ -496,6 +496,14 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("../assets/code-examples/cardReducer.js.example")}
           ranges={[{ loc: [0, 2], title: "cardListReducer.js" }, { loc: [3, 5] }, { loc: [5, 11] }, { loc: [13, 14] }]}
+        />
+
+        <CodeSlide
+          align="top"
+          bgColor={"primary"}
+          lang="js"
+          code={require("../assets/code-examples/rootReducer.example")}
+          ranges={[{ loc: [1, 3], title: "reducers/index.js" }, { loc: [4, 8] }]}
         />
 
         <Slide align="top">
@@ -615,8 +623,7 @@ export default class Presentation extends React.Component {
           <MyHeading section="Hello, Redux">Testing Redux</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
             <ListItem>Nothing to add, the project is already set up with Jest from last week</ListItem>
-            <AppearListItem>Testing Actions</AppearListItem>
-            <AppearListItem>Testing Reducers</AppearListItem>
+            <AppearListItem>Challenge 15: Add tests for the actions and reducers.</AppearListItem>
           </List>
         </Slide>
 
@@ -688,367 +695,11 @@ export default class Presentation extends React.Component {
           />
         </Slide>
 
-        {/* 
-        <Slide align="top">
-          <MyHeading section="Testing React">Jest</MyHeading>
-          <List>
-            <ListItem>Jest is a test runner; great for testing React</ListItem>
-            <AppearListItem>Enzyme is used for component rendering/mounting</AppearListItem>
-            <AppearListItem>Challenge 7: Add Jest using yarn. Add a "test" script to the package.json that calls "jest", and write and run some tests for the calculateWinner helper function.</AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Jest</MyHeading>
-          <List>
-            <ListItem><Code style={codeLight}>yarn add --dev jest</Code></ListItem>
-            <AppearListItem>
-              <MyCodePane source={`// Board.jsx
-...
-export const calculateWinner = (squares) => {
-...`}
-              />
-            </AppearListItem>
-            <AppearListItem>
-              <MyCodePane source={`// package.json
-"scripts": {
-     ...
-    "test": "jest"
-},
-...`}
-              />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/board.spec.example")}
-          ranges={[{ loc: [0, 1], title: "Board.spec.jsx" }, { loc: [2, 13] }, { loc: [14, 25] }, { loc: [26, 37] }]}
-        />
-
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Jest Tips</MyHeading>
-          <List style={{ marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Can watch files to test<br /><Code style={codeLight}>yarn test --watch</Code>, older: yarn test -- --watch<br /><br /></ListItem>
-            <AppearListItem>Can see specific test results<br /><Code style={codeLight}>yarn test --verbose</Code><br /><br /></AppearListItem>
-            <AppearListItem>View code coverage report<br /><Code style={codeLight}>yarn test --coverage</Code><br /><br /></AppearListItem>
-            <AppearListItem>Run a subset of tests based on file or test name (-t)<br /><Code style={codeLight}>yarn test Board</Code><br /><br /></AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Component Testing</MyHeading>
-          <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Snapshot testing available, e.g.: <br /> <Code style={codeLight}>expect(tree).toMatchSnapshot();</Code><br /><br /></ListItem>
-            <AppearListItem>Challenge 8: Add and configure Enzyme, and write some component tests for the behavior of Square. (Don't be a hero; take a peek at the upcoming slides for Enzyme configuration.)</AppearListItem>
-          </List>
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Add Enzyme</MyHeading>
-          <List style={{ marginLeft: "-150px", marginRight: "-65px" }}>
-            <ListItem><Code style={codeLight}>yarn add enzyme enzyme-adapter-react-16</Code></ListItem>
-            <AppearListItem><Code style={codeLight}>yarn add --dev babel-jest react-test-renderer</Code></AppearListItem>
-            <AppearListItem>
-              <MyCodePane source={`// utilities/setupTests.js
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
-`}
-              />
-            </AppearListItem>
-            <AppearListItem>
-              <MyCodePane source={`// package.json
-  "scripts": {
-    ...
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "./utilities/setupTests.js"
-  },
-...`}
-              />
-            </AppearListItem>
-          </List>
-        </Slide>
-
-        <CodeSlide
-          align="top"
-          bgColor={"primary"}
-          lang="js"
-          code={require("../assets/code-examples/square.spec.example")}
-          ranges={[{ loc: [0, 3], title: "Square.spec.jsx" }, { loc: [4, 15] }, { loc: [16, 23] }, { loc: [24, 29] }, { loc: [30, 37] }]}
-        />
-
-        <Slide align="top">
-          <MyHeading section="Testing React">yarn test</MyHeading>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn test --verbose</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
-                <div>
-                  <span style={{ color: "#aaa" }}>$ jest --verbose</span>
-                </div>
-              </div>,
-              <div>
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Square.spec.js</span>
-                </div>
-                <div>  Square component</div>
-                <div>
-                  <span style={{ color: "#33b969" }}>    ✓</span>
-                  <span style={{ color: "#aaa" }}> always renders a div (7ms)</span>
-                </div>
-                <div>
-                  <span style={{ color: "#33b969" }}>    ✓</span>
-                  <span style={{ color: "#aaa" }}> displays the value of the "value" prop (2ms)</span>
-                </div>
-              </div>,
-              <div>
-                <br />
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Board.spec.js</span>
-                </div>
-                <div>
-                  <span style={{ color: "#33b969" }}>  ✓</span>
-                  <span style={{ color: "#aaa" }}> returns null if no winner (1ms) </span>
-                </div>
-                <div>
-                  <span style={{ color: "#33b969" }}>  ✓</span>
-                  <span style={{ color: "#aaa" }}> returns X when X has won (1ms)</span>
-                </div>
-                <div>
-                  <span style={{ color: "#33b969" }}>  ✓</span>
-                  <span style={{ color: "#aaa" }}> returns O when O has won (1ms)</span>
-                </div>
-                <br />
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Test Suites: </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 2 passed</span>
-                  , 2 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Tests:       </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 5 passed</span>
-                  , 5 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Snapshots:    </span>
-                  0 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Time:         </span>
-                  1.14s
-                </div>
-                <div>
-                  <span style={{ color: "#aaa" }}>Ran all test suites.</span>
-                </div>
-                <div>
-                  ✨ Done in 1.75s.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Failing example</MyHeading>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn test square</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
-                <div>
-                  <span style={{ color: "#aaa" }}>$ jest square</span>
-                </div>
-              </div>,
-              <div>
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#E11111" }}> FAIL </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Square.spec.js</span>
-                </div>
-                <div>  Square component</div>
-                <div>
-                  <span style={{ color: "#E11111" }}>    x</span>
-                  <span style={{ color: "#aaa" }}> always renders a div (7ms)</span>
-                </div>
-                <div>
-                  <span style={{ color: "#33b969" }}>    ✓</span>
-                  <span style={{ color: "#aaa" }}> displays the value of the "value" prop (2ms)</span>
-                </div>
-                <br />
-                <div>
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>  • Square component > always renders a div </span>
-                </div>
-                <br />
-                <div>
-                  <span style={{ color: "#aaa" }}>    expect(</span>
-                  <span style={{ color: "#E11111" }}>received</span>
-                  <span style={{ color: "#aaa" }}>).toBe(</span>
-                  <span style={{ color: "#33b969" }}>expected</span>
-                  <span style={{ color: "#aaa" }}>)</span>
-                </div>
-                <br />
-                <div>    Expected value to be (using Object.js):</div>
-                <div style={{ color: "#33b969" }}>      2</div>
-                <div>    Received:</div>
-                <div style={{ color: "#E11111" }}>      1</div>
-                <br />
-                <div><span style={{ color: "#888 " }}>      26 |     const div = square().find('div');</span></div>
-                <div>
-                  <span style={{ color: "#E11111" }}>    > </span>
-                  <span style={{ color: "#ccc" }}>27 |    </span>
-                  <span style={{ color: "#ccc", fontWeight: "bold" }}> expect(div.length).toBe(2);</span>
-                </div>
-                <div><span style={{ color: "#888 " }}>      28 |   });</span></div>
-                <div><span style={{ color: "#888 " }}>      29 |</span></div>
-                <br />
-                <div><span style={{ color: "#888 " }}>      at Object.anonymous (src/Square.spec.jsx:28:24)</span></div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Test Suites: </span>
-                  <span style={{ fontWeight: "bold", color: "#E11111" }}> 1 failed</span>
-                  , 1 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Tests:       </span>
-                  <span style={{ fontWeight: "bold", color: "#e11111" }}> 1 failed</span>,
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 1 passed</span>
-                  , 2 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Snapshots:    </span>
-                  0 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Time:         </span>
-                  1.261s
-                </div>
-                <div>
-                  <span style={{ color: "#aaa" }}>Ran all test suites matching </span>/square/i.
-                </div>
-                <div>
-                  <span style={{ color: "#E11111" }}>error </span>Command failed with exit code 1.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide>
-
-        <Slide align="top">
-          <MyHeading section="Testing React">Code coverage</MyHeading>
-          <Terminal
-            title="1. erin@headspring: ~(zsh)"
-            output={[
-              <Typist cursor={cursor}>yarn test --coverage</Typist>,
-              <div>
-                <span style={{ fontWeight: "bold" }}>yarn run v1.3.2</span>
-                <div>
-                  <span style={{ color: "#aaa" }}>$ jest --coverage</span>
-                </div>
-              </div>,
-              <div>
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Square.spec.js</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold", color: "#fff", backgroundColor: "#33b969" }}> PASS </span>
-                  <span style={{ color: "#aaa" }}> src/</span>
-                  <span style={{ fontWeight: "bold" }}>Board.spec.js</span>
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Test Suites: </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 2 passed</span>
-                  , 2 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Tests:       </span>
-                  <span style={{ fontWeight: "bold", color: "#33b969" }}> 5 passed</span>
-                  , 5 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Snapshots:    </span>
-                  0 total
-                </div>
-                <div>
-                  <span style={{ fontWeight: "bold" }}>Time:         </span>
-                  1.15s
-                </div>
-                <div>
-                  <span style={{ color: "#aaa" }}>Ran all test suites.</span>
-                </div>
-                <div>----------------|---------|----------|---------|---------|----------------|</div>
-                <div>File            | % Stmts | % Branch | % Funcs | % Lines |Uncovered Lines |</div>
-                <div>----------------|---------|----------|---------|---------|----------------|</div>
-                <div>
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>All files</span>       |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>   43.33</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>    27.78</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>      25</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>   43.33</span> |                |
-                </div>
-                <div>
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}> src</span>            |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>   41.38</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>    27.78</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>      25</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>   41.38</span> |                |
-                </div>
-                <div>
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>  Board.jsx</span>     |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>      32</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>    27.78</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>   14.29</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>      32</span> |
-                  <span style={{ color: "#E11111", fontWeight: "bold" }}>... 71,72,74,77</span> |
-                </div>
-                <div>
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>  Square.jsx</span>    |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>      100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |                |
-                </div>
-                <div>
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}> utilities</span>      |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>      100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |                |
-                </div>
-                <div>
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>  setupTests.js</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>      100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |
-                  <span style={{ color: "#33b969", fontWeight: "bold" }}>     100</span> |                |
-                </div>
-                <div>----------------|---------|----------|---------|---------|----------------|</div>
-                <div>
-                  ✨ Done in 1.99s.
-                </div>
-              </div>
-            ]}
-          />
-        </Slide> */}
-
         <Slide align="top">
           <MyHeading>Recommended Resources</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem><a href="https://redux.js.org/">Redux docs</a></ListItem>
+            <ListItem><a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux DevTools</a></ListItem>
             <ListItem><a href="https://github.com/gaearon/redux-thunk">Redux-Thunk documentation</a></ListItem>
             <ListItem><a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">A Cartoon Intro to Redux</a></ListItem>
             <ListItem><a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a> - Dan Abramov</ListItem>
