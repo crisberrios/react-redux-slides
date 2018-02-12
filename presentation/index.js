@@ -323,7 +323,6 @@ export default class Presentation extends React.Component {
               <AppearListItem>Smart components rarely emit DOM of their own; usually just arrange dumb components</AppearListItem>
             </List></Fill>
           </Layout>
-          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
         </Slide>
 
         <Slide align="top">
@@ -336,7 +335,6 @@ export default class Presentation extends React.Component {
               <AppearListItem>Ensures the components can connect to the store</AppearListItem>
             </List></Fill>
           </Layout>
-          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
         </Slide>
 
         <Slide align="top">
@@ -353,7 +351,6 @@ export default class Presentation extends React.Component {
               </ListItem>
             </List></Fill>
           </Layout>
-          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
         </Slide>
 
         <Slide align="top">
@@ -367,7 +364,6 @@ export default class Presentation extends React.Component {
               <AppearListItem>Hands-off once the app has been initialized</AppearListItem>
             </List></Fill>
           </Layout>
-          <MyFooter>images from <a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">code-cartoons.com</a></MyFooter>
         </Slide>
 
         <Slide align="top">
