@@ -11,7 +11,6 @@ import {
   Code,
   Layout,
   Fill,
-  Fit,
   CodePane,
   Text
 } from "spectacle";
@@ -22,11 +21,6 @@ import Typist from "react-typist";
 import Counter from "./samples/Counter.jsx";
 import ReduxCounter from "./samples/ReduxCounter.jsx";
 import ReduxCounter2 from "./samples/ReduxCounter2.jsx";
-import Board from "./samples/Board.jsx";
-import Board2 from "./samples/Board2.jsx";
-import Board3 from "./samples/Board3.jsx";
-import Board4 from "./samples/Board4.jsx";
-import Board5 from "./samples/Board5.jsx";
 require("normalize.css");
 require("./samples/style.css");
 
@@ -164,7 +158,7 @@ export default class Presentation extends React.Component {
           <List style={{ lineHeight: 1.5, marginLeft: "-75px", marginRight: "-75px" }}>
             <ListItem>What is Redux?</ListItem>
             <ListItem>Why use Redux?</ListItem>
-            <ListItem>How to Redux</ListItem>
+            <ListItem>How to use Redux</ListItem>
             <ListItem>Testing Redux</ListItem>
             <ListItem>Recommended resources</ListItem>
           </List>
@@ -190,8 +184,6 @@ export default class Presentation extends React.Component {
             <AppearListItem>Maintain an undo history</AppearListItem>
             <AppearListItem>Time travel during development</AppearListItem>
             <AppearListItem>Preserve business logic to provide alternative UIs</AppearListItem>
-            <AppearListItem>Easy to test</AppearListItem>
-            <AppearListItem>Ideal for scalable SPAs</AppearListItem>
           </List>
         </Slide>
 
@@ -369,7 +361,7 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading>Adding Redux</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Challenge 9: Pull the Redux_Starter branch of the repo, and add necessary packages for Redux</ListItem>
+            <ListItem>Challenge 9: Pull the Redux_Starter branch of <a href="https://bitbucket.org/headspring/react-redux-learning-hour/src/9ce535c2352ea3d9f7fbccc9a34ca6ab7bfff9d3/?at=Redux_Starter">the repo</a>, and add necessary packages for Redux development. Confirm that you can run the starting point locally.</ListItem>
             <AppearListItem>Run <Code style={codeLight}>yarn add redux react-redux redux-thunk</Code></AppearListItem>
             <AppearListItem>Run <Code style={codeLight}>yarn</Code> to ensure all previously defined packages have been installed</AppearListItem>
             <AppearListItem>Run <Code style={codeLight}>yarn start</Code> to run the application at localhost:8080</AppearListItem>
@@ -474,7 +466,7 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading section="Hello, Redux">Adding Redux</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Challenge 12: Create a reducer file for each action that takes the current state and action message, and switches based on action type to update the state. Link these two reducers with a root reducer (already started for you in reducers/index.js).</ListItem>
+            <ListItem>Challenge 12: Create a reducer file for each action that takes the current state and an action message, and switches based on action type to update the state. Link these two reducers with a root reducer (already started for you in reducers/index.js).</ListItem>
           </List>
         </Slide>
 
@@ -586,7 +578,7 @@ export default class Presentation extends React.Component {
           bgColor={"primary"}
           lang="js"
           code={require("../assets/code-examples/welcomeCard.example")}
-          ranges={[{ loc: [1, 3], title: "WelcomeCard.jsx" }, { loc: [5, 9] }, { loc: [14, 15] }, { loc: [16, 19] }, { loc: [24, 29] }]}
+          ranges={[{ loc: [1, 3], title: "WelcomeCard.jsx" }, { loc: [5, 9] }, { loc: [16, 19] }, { loc: [24, 29] }]}
         />
 
         <CodeSlide
@@ -594,7 +586,7 @@ export default class Presentation extends React.Component {
           bgColor={"primary"}
           lang="js"
           code={require("../assets/code-examples/cardList.example")}
-          ranges={[{ loc: [1, 3], title: "CardList.jsx" }, { loc: [5, 9] }, { loc: [13, 14] }, { loc: [16, 19] }]}
+          ranges={[{ loc: [1, 3], title: "CardList.jsx" }, { loc: [5, 9] }, { loc: [16, 19] }]}
         />
 
         <Slide align="top">
@@ -695,7 +687,7 @@ export default class Presentation extends React.Component {
           <MyHeading>Recommended Resources</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem><a href="https://redux.js.org/">Redux docs</a></ListItem>
-            <ListItem><a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux DevTools</a></ListItem>
+            <ListItem>Redux DevTools for <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Chrome</a> or <a href="https://addons.mozilla.org/en-US/firefox/addon/remotedev/">Firefox</a></ListItem>
             <ListItem><a href="https://github.com/gaearon/redux-thunk">Redux-Thunk documentation</a></ListItem>
             <ListItem><a href="https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6">A Cartoon Intro to Redux</a></ListItem>
             <ListItem><a href="https://medium.com/@dan_abramov/you-might-not-need-redux-be46360cf367">You Might Not Need Redux</a> - Dan Abramov</ListItem>
