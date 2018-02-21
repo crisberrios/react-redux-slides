@@ -169,7 +169,7 @@ export default class Presentation extends React.Component {
             <ListItem>React components used on a page within a larger app</ListItem>
             <AppearListItem>Example: Headspring PM Staffing Schedule</AppearListItem>
             <AppearListItem>Complex visualization needed only on one page of the application</AppearListItem>
-            { /* TODO: Recommended? Why? */ }
+            <AppearListItem>Still recommended approach for a similar situation; except using our recommended tooling and newer versions</AppearListItem>
           </List>
         </Slide>
 
@@ -193,7 +193,7 @@ export default class Presentation extends React.Component {
             <ListItem>Use React components for specific views in an MVC app</ListItem>
             <AppearListItem>Examples: Headspring OWN tool, USBC TMS</AppearListItem>
             <AppearListItem>Didn't want to commit to a SPA, but still use full React components for views</AppearListItem>
-            { /* TODO: Recommended? Why? */ }
+            <AppearListItem>Early in our understanding of React; doesn't provide the real benefit of either approach. Not recommended for future projects.</AppearListItem>
           </List>
         </Slide>
 
@@ -231,7 +231,7 @@ export default class Presentation extends React.Component {
             <AppearListItem>Example: Original YETI Overlord</AppearListItem>
             <AppearListItem>Used Next.js to "simplify" the building of a server-rendered React app</AppearListItem>
             <AppearListItem>Worked well when the app was small, didn't scale well</AppearListItem>
-            { /* TODO: Recommended? Why? */ }
+            <AppearListItem>Same issues as an all-React app. Recommended for trivial applications.</AppearListItem>
           </List>
         </Slide>
 
@@ -303,9 +303,9 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading section="Using React/Redux">4. SPA with React/Redux</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: '-150px', marginRight: '-150px' }}>
-            <AppearListItem>Example: USBC Registration, K|Admin</AppearListItem>
             <AppearListItem>Headspring's default position for front-end projects</AppearListItem>
-            { /* TODO: Recommended? Why? */ }
+            <AppearListItem>Example: USBC Registration, K|Admin</AppearListItem>
+            <AppearListItem>Can include Redux at the level appropriate for that project</AppearListItem>
           </List>
         </Slide>
 
@@ -330,6 +330,7 @@ export default class Presentation extends React.Component {
             <ListItem><a href="https://egghead.io/series/getting-started-with-redux">Getting Started with Redux</a> video series</ListItem>
             <ListItem><a href="https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f">When Do I Know I'm Ready for Redux</a></ListItem>
             <ListItem><a href="https://headspring.atlassian.net/wiki/spaces/FED/pages">Front End Development Confluence space</a></ListItem>
+            <ListItem>Coming Soon - Compiled reference material from this course</ListItem>
           </List>
         </Slide>
 
