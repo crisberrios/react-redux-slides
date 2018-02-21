@@ -175,7 +175,19 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
 
-        { /* TODO: Repo/Code examples - Staffing Schedule */ }
+        <Slide align="top">
+          <MyHeading section="React Example">Staffing Schedule</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/staffingSchedule-ui.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="React Example">Staffing Schedule</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/staffingSchedule.png")} />
+          </div>
+        </Slide>
 
         <Slide align="top">
           <MyHeading section="Using React/Redux">2. React Views</MyHeading>
@@ -187,7 +199,33 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
 
-        { /* TODO: Repo/Code examples - OWN */ }
+        <Slide align="top">
+          <MyHeading section="React Example">OWN Tool</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/OWN-ui.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="React Example">OWN Tool</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/OWN.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="React Example">OWN Tool</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/OWN2.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="React Example">OWN Tool</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/OWN3.png")} />
+          </div>
+        </Slide>
 
         <Slide align="top">
           <MyHeading section="Using React/Redux">3. React without Redux</MyHeading>
@@ -211,8 +249,8 @@ export default class Presentation extends React.Component {
 
         <Slide align="top">
           <MyHeading section="Using React/Redux">State Changes in React</MyHeading>
-          <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
-            <ListItem>Components share state, but aren't a parent/child</ListItem>
+          <List style={{ lineHeight: 1.5, marginLeft: "-150px", marginRight: "-150px" }}>
+            <ListItem>When components share state, but aren't a parent/child</ListItem>
             <AppearListItem>Solve by "lifting" state
               <Image style={{ background: "#fff" }} src={require("../assets/state-change2.gif")} />
             </AppearListItem>
@@ -241,6 +279,20 @@ export default class Presentation extends React.Component {
         </Slide>
 
         <Slide align="top">
+          <MyHeading section="React Example">YETI: Overlord</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/overlord-ui.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
+          <MyHeading section="React Example">YETI: Overlord</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/overlord1.png")} />
+          </div>
+        </Slide>
+
+        <Slide align="top">
           <MyHeading section="Using React/Redux">State Changes in Redux</MyHeading>
           <List style={{ lineHeight: 1.5, listStyle: "none" }}>
             <AppearListItem>
@@ -249,9 +301,6 @@ export default class Presentation extends React.Component {
           </List>
           <MyFooter>Image from <a href="https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f">When do I know I'm ready for Redux?</a></MyFooter>
         </Slide>
-
-        { /* TODO: Repo/Code examples - Old Overlord */ }
-
 
         <Slide align="top">
           <MyHeading section="Using React/Redux">4. SPA with React/Redux</MyHeading>
@@ -262,15 +311,27 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
 
-        { /* Repo/Code examples - Serenity HR */ }
+        <Slide align="top">
+          <MyHeading section="React/Redux Example">USBC Registration</MyHeading>
+          <div style={{ marginTop: "-50px", marginLeft: "-150px", marginRight: "-150px", width: "130%" }}>
+            <Image src={require("../assets/usbc1.png")} />
+          </div>
+        </Slide>
 
-        { /* Repo/Code example - K|Admin */ }
+        <Slide>
+          <Heading caps size={4} textColor="tertiary" style={{ fontWeight: "300", marginBottom: "0.5em" }}>Serenity HR</Heading>
+        </Slide>
+
+        <Slide>
+          <Heading caps size={4} textColor="tertiary" style={{ fontWeight: "300", marginBottom: "0.5em" }}>K|Admin</Heading>
+        </Slide>
 
         <Slide align="top">
           <MyHeading>Recommended Resources</MyHeading>
           <List style={{ lineHeight: 1.5, marginLeft: "-100px", marginRight: "-100px" }}>
             <ListItem><a href="https://egghead.io/series/getting-started-with-redux">Getting Started with Redux</a> video series</ListItem>
             <ListItem><a href="https://medium.com/dailyjs/when-do-i-know-im-ready-for-redux-f34da253c85f">When Do I Know I'm Ready for Redux</a></ListItem>
+            <ListItem><a href="https://headspring.atlassian.net/wiki/spaces/FED/pages">Front End Development Confluence space</a></ListItem>
           </List>
         </Slide>
 
