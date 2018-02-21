@@ -156,9 +156,7 @@ export default class Presentation extends React.Component {
         <Slide align="top">
           <MyHeading>Intro to React/Redux: Part 4</MyHeading>
           <List style={{ lineHeight: 1.5 }}>
-            <ListItem>Approaches to using React/Redux</ListItem>
-            <ListItem>Example: OWN tool</ListItem>
-            <ListItem>Example: YETI Overlord</ListItem>
+            <ListItem>Approaches to using React and Redux</ListItem>
             <ListItem>Example: Serenity HR</ListItem>
             <ListItem>Example: K|Admin</ListItem>
             <ListItem>Recommended resources</ListItem>
